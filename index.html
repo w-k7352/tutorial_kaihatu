@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>ToDo App</h1>
+        <div id="task-counters">
+            <span class="counter">未着手: <span id="counter-todo">0</span></span>
+            <span class="counter">進行中: <span id="counter-doing">0</span></span>
+            <span class="counter">完了: <span id="counter-done">0</span></span>
+        </div>
+    </header>
+
+    <main>
+        <section class="card" id="add-task-section">
+            <h2>新しいタスク</h2>
+            <form id="add-task-form">
+                <div class="form-group">
+                    <label for="form-title">タイトル (必須)</label>
+                    <input type="text" id="form-title" placeholder="例: デザインをレビューする" required aria-label="新しいタスクのタイトル">
+                </div>
+                <div class="form-group">
+                    <label for="form-due">期限</label>
+                    <input type="date" id="form-due" aria-label="期限">
+                </div>
+                <div class="form-group">
+                    <label for="form-tags">タグ (カンマ区切り)</label>
+                    <input type="text" id="form-tags" placeholder="例: 設計,重要" aria-label="タグ">
+                </div>
+                <div class="form-group">
+                    <label for="form-status">ステータス</label>
+                    <select id="form-status" aria-label="ステータス">
+                        <option value="todo">未着手</option>
+                        <option value="doing">進行中</option>
+                        <option value="done">完了</option>
+                    </select>
+                </div>
+                <button type="submit" class="button-primary">追加</button>
+            </form>
+        </section>
+
+        <section class="card" id="filter-sort-section">
+            <h2>フィルタ & ソート</h2>
+            <div class="filter-sort-controls">
+                <div class="form-group">
+                    <label for="filter-keyword">キーワード</label>
+                    <input type="text" id="filter-keyword" placeholder="タイトルやタグで検索">
+                </div>
+                <div class="form-group">
+                    <label for="filter-status">ステータス</label>
+                    <select id="filter-status">
+                        <option value="all">すべて</option>
+                        <option value="todo">未着手</option>
+                        <option value="doing">進行中</option>
+                        <option value="done">完了</option>
+                    </select>
+                </div>
+                 <div class="form-group">
+                    <label for="filter-tag">タグ</label>
+                    <input type="text" id="filter-tag" placeholder="タグを完全一致で検索">
+                </div>
+                <div class="form-group">
+                    <label for="sort-by">ソート</label>
+                    <select id="sort-by">
+                        <option value="created_at_desc">作成日 (新しい順)</option>
+                        <option value="created_at_asc">作成日 (古い順)</option>
+                        <option value="due_asc">期限 (昇順)</option>
+                        <option value="title_asc">タイトル (昇順)</option>
+                    </select>
+                </div>
+                <button id="clear-filters-btn">リセット</button>
+            </div>
+        </section>
+
+        <section class="card" id="task-list-section">
+            <h2>タスク一覧</h2>
+            <div class="table-wrapper">
+                <table id="task-table">
+                    <thead>
+                        <tr>
+                            <th class="col-status-toggle">完了</th>
+                            <th class="col-title">タイトル</th>
+                            <th class="col-due">期限</th>
+                            <th class="col-tags">タグ</th>
+                            <th class="col-status">ステータス</th>
+                            <th class="col-actions">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="task-list-body"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <button id="export-csv-btn" class="button-secondary">CSVエクスポート</button>
+    </footer>
+
+    <script src="utils.js"></script>
+    <script src="storage.js"></script>
+    <script src="view.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
